@@ -66,4 +66,4 @@ You can use ZeroTier as more "elegant" solution that does not required port forw
 6. Now connect the client and repeat step 5
 7. Once you are sure both devices are connect to the same VPN server, open the server (host) mobile terminal and type this command
 
-* socat udp-recvfrom:47777,reuseaddr,keep alive,broadcast,fork ump:client.ip.from.zerotier:47777
+* socat udp-recvfrom:47777,reuseaddr,keep alive,broadcast,fork udp:client.ip.from.zerotier:47777
