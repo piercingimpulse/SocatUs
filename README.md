@@ -1,7 +1,6 @@
 # SocatUs
-
 How to connect two mobile device (iOS and/or Android) via P2P in Among Us legacy.
-
+[Youtube video showcase](https://youtu.be/YH3-EzmAguc)
 ## Brief intro (?)
 I've been trying to fix Among Us for legacy device.
 For my test I've used:
