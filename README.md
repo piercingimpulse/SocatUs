@@ -50,7 +50,7 @@ Among Us uses UDP communication to create host and connect between players while
 1. Make sure you are not in the LAN room on Among Us;
 2. Open the mobile terminal and create a shortcut to this commands:
 
-`socat tcp-listen:47777,reuseaddr,keepalive,broadcast,fork udp:localhost:47777 & socat udp-l:22023,reuseaddr,broadcast,fork tcp:SERVER.REMOTE.IP:22023 & socat udp-l:22023,reuseaddr,broadcast,fork tcp:SERVER.REMOTE.IP:22023 & socat udp-recvfrom:47777,reuseaddr,broadcast,fork tcp:NEXT.CLIENT.REMOTE.IP:47777`
+`socat tcp-listen:47777,reuseaddr,keepalive,broadcast,fork udp:localhost:47777 & socat udp-l:22023,reuseaddr,broadcast,fork tcp:SERVER.REMOTE.IP:22023 & socat udp-recvfrom:47777,reuseaddr,broadcast,fork tcp:NEXT.CLIENT.REMOTE.IP:47777`
 #### Explication
 For the client we need to open a TCP port 47777 and tunnel the broadcast message as UDP; since we are tunneling packets, this it does not keep the original IP of the host, but instead it reads the packets as being send from the same remote IP of the client; to prevent that, the second socat use udp-l to "catch" the packets and tunnel them back to the server remote ip, where they will be then converted by the socat server in UDP packets! **With the third socat, we then once again send the packets receive from the server to another client.**
 
