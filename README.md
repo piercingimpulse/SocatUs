@@ -39,7 +39,7 @@ I feel that sharing those infos can be useful to find a more stable solution (: 
 1. Make sure you are not in the LAN room on Among Us;
 2. Open the mobile terminal and create a shortcut to this commands:
 
-* socat tcp-listen:47777,reuseaddr,keepalive,broadcast,fork udp:localhost:47777 & socat tcp-listen:22023,reuseaddr,keepalive,broadcast,fork udp:localhost:22023 & socat udp-recvfrom:47777,reuseaddr,keepalive,broadcast,fork tcp:CLIENT:REMOTE.IP:47777
+> socat tcp-listen:47777,reuseaddr,keepalive,broadcast,fork udp:localhost:47777 & socat tcp-listen:22023,reuseaddr,keepalive,broadcast,fork udp:localhost:22023 & socat udp-recvfrom:47777,reuseaddr,keepalive,broadcast,fork tcp:CLIENT:REMOTE.IP:47777
 
 # Explication
 Among Us uses UDP communication to create host and connect between players while using LAN. UDP packets can be send/receive only if the devices are on the same network*. We need to use socat to listen port TCP 47777 and 22023, since TCP can be used over internet. The parameter reuseaddr allows socat to keep communicating and don't close the socket after the first response (same for keepalive and broadcast? I use them as reinforcement lol); fork tunnel the packets and the communications to a different format. This command starts three socat processes: the first two to listen TCP port and convert the packets in UDP, while the last one convert the broadcast message send by the Among Us server (the name that appear in the list of games available) over TCP.
