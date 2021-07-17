@@ -63,9 +63,15 @@ You can use ZeroTier as more "elegant" solution that does not required port forw
 5. Go back to the ZeroTier setting website and authorized the new connection and take note of each address in the Managed IP column (Note: You can give a name to the device to recognize to how belong the IP)
 6. Now connect the client and repeat step 5
 7. Once you are sure both devices are connect to the same VPN server, open the server (host) mobile terminal and type this command:
-`socat udp-recvfrom:47777,reuseaddr,keep alive,broadcast,fork udp:first.client.ip.from.zerotier:47777`
+
+`socat udp-recvfrom:47777,reuseaddr,keepalive,broadcast,fork udp:first.client.ip.from.zerotier:47777`
+
 8. On the first client then, run this command:
-`socat udp-recvfrom:47777,reuseaddr,keep alive,broadcast,fork udp:second.client.ip.from.zerotier:47777`
+
+`socat udp-recvfrom:47777,reuseaddr,keepalive,broadcast,fork udp:second.client.ip.from.zerotier:47777 & socat udp-l:22023,reuseaddr,broadcast,fork udp:server.ip.from.zerotier:22023`
+
+9. Repeat step 8 for every client you want to connect, remembering that you have to change the "upd:second.client.ip.from.zerotier" with the IP of the next client.
 
 # Final Note
-I've tested the whole procedure using two device on the same network with some tweaks to ensure I was tunneling every packets and it works, but as I don't have access two different network and forwarding port it's not possible on mobile network I can't say it works 100%; on the other hand, I had positive result in broadcasting at least the game host on the client mobile network.If anywant it's available to test this with me, just let me know (:
+Unfortunately, I coudn't do a proper test since I don't have access to another network. I've decided to forward a 3rd port on my router to tunnel back the host UDP broadcast message via TCP to test if everything works. And it does!
+The major results are with ZeroTier: having host on wifi and two clients on mobile network, I've managed to both see the host and connect to it!
