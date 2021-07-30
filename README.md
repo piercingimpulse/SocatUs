@@ -1,6 +1,8 @@
 # SocatUs
 How to connect two mobile device (iOS and/or Android) via P2P in Among Us legacy.
 [Youtube video showcase](https://youtu.be/YH3-EzmAguc)
+
+## Please follow my forked project of [ImpostorConfig](https://github.com/piercingimpulse/ImpostorConfig-LAN-) to play Local over Internet. 
 ## Brief intro (?)
 I've been trying to fix Among Us for legacy device.
 For my test I've used:
